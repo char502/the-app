@@ -1,5 +1,9 @@
 # Data Handling for THE
 
+- App runs in react
+- Use 'git pull' to pull the repo down locally
+- Use 'npm start' to run the app
+
 ## What was Done
 
 - Used Chart.js and react-chartjs-2 to experiment with and chart the data provided (have not used Chart.js before so was a good opportunity to have a go)
