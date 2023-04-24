@@ -1,12 +1,12 @@
 import { Chart as ChartJS, registerables } from "chart.js";
-import { Bar } from "react-chartjs-2";
-import { consolidatedSubmissions } from "../data/submissions";
+import { Pie } from "react-chartjs-2";
+import { SubData, consolidatedSubmissions } from "../data/submissions";
 
 ChartJS.register(...registerables);
 
 const BarChart = () => {
   const data = {
-    labels: consolidatedSubmissions.map((data) => {
+    labels: consolidatedSubmissions.map((data: SubData) => {
       if (data.institution_id === "EA8BBED7-4106-94AF-48DD-A1414E386AFB") {
         return "Prestigious Science University";
       } else if (
@@ -22,8 +22,8 @@ const BarChart = () => {
     }),
     datasets: [
       {
-        label: "Total Students By Institution",
-        data: consolidatedSubmissions.map((data) => data.students_total),
+        label: "Academic Papers By Institution",
+        data: consolidatedSubmissions.map((data: SubData) => data.academic_papers),
         borderWidth: 1,
       },
     ],
@@ -31,15 +31,10 @@ const BarChart = () => {
 
   const options = {
     maintainAspectRatio: false,
-    scales: {
-      y: {
-        beginAtZero: true,
-      },
-    },
     plugins: {
       title: {
         display: true,
-        text: "A Bar Chart Showing Total Students By Institution",
+        text: "A Pie Chart Showing Academic Papers by Institution between 2017 and 2019",
       },
     },
     legend: {
@@ -51,7 +46,7 @@ const BarChart = () => {
 
   return (
     <div>
-      <Bar data={data} height={400} options={options} />
+      <Pie data={data} height={400} options={options} />
     </div>
   );
 };

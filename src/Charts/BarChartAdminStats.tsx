@@ -1,46 +1,33 @@
-import React from "react";
-import {
-  Chart as ChartJS,
-//   BarElement,
-//   CategoryScale,
-//   LinearScale,
-  registerables,
-} from "chart.js";
+import { Chart as ChartJS, registerables } from "chart.js";
 import { Bar } from "react-chartjs-2";
-import { submissionsData, consolidatedSubmissions } from "../data/submissions";
+import { SubData, consolidatedSubmissions } from "../data/submissions";
 
-ChartJS.register(
-  // CategoryScale,
-  // BarElement,
-  // LinearScale,
-  ...registerables
-);
-
-console.log(consolidatedSubmissions);
+ChartJS.register(...registerables);
 
 const BarChartAdminStats = () => {
   const data = {
-    labels: consolidatedSubmissions.map((data) => {
-       //  @ts-ignore
-        if (data.institution_id === "EA8BBED7-4106-94AF-48DD-A1414E386AFB") {
-            return 'Prestigious Science University'
-            //  @ts-ignore
-        } else if (data.institution_id === "DEA4606B-4A21-D497-40E9-A5FB7589B536") {
-            return 'Top University of Mathmatics'
-            //  @ts-ignore
-        } else if (data.institution_id === "8C8A804F-7A43-5840-4296-8A0117325921") {
-            return 'Technology Institute'
-        }
-      }),
+    labels: consolidatedSubmissions.map((data: SubData) => {
+      if (data.institution_id === "EA8BBED7-4106-94AF-48DD-A1414E386AFB") {
+        return "Prestigious Science University";
+      } else if (
+        data.institution_id === "DEA4606B-4A21-D497-40E9-A5FB7589B536"
+      ) {
+        return "Top University of Mathmatics";
+      } else if (
+        data.institution_id === "8C8A804F-7A43-5840-4296-8A0117325921"
+      ) {
+        return "Technology Institute";
+      }
+      return null;
+    }),
     datasets: [
       {
         label: "Staff Total",
-        data: consolidatedSubmissions.map((data) => data.staff_total),
-        backgroundColor: 'Violet',
-        stack: 'Stack 0',
+        data: consolidatedSubmissions.map((data: SubData) => data.staff_total),
+        backgroundColor: "Violet",
+        stack: "Stack 0",
         borderWidth: 1,
       },
-    
     ],
   };
 
@@ -55,8 +42,8 @@ const BarChartAdminStats = () => {
     plugins: {
       title: {
         display: true,
-        text: 'A Bar Chart Showing Students By Staff Totals'
-      }
+        text: "A Bar Chart Showing Staff Totals for each institution",
+      },
     },
     legend: {
       labels: {

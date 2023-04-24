@@ -197,7 +197,6 @@ export const submissionsData: SubData[] = [
 ];
 
 // Consolidate the data by institution
-
 export const consolidatedSubmissions: SubData[] = submissionsData.reduce(
   (acc, current) => {
     let itemIndex = acc.find(
@@ -255,19 +254,3 @@ export const consolidatedSubmissions: SubData[] = submissionsData.reduce(
   },
   []
 );
-
-// export const consolidatedSubmissions = Object.values(
-//   submissionsData.reduce((agg, item) => {
-//     // @ts-ignore
-//     if (agg[item.institution_id] === undefined) agg[item.institution_id] = { institution_id: item.institution_id, staff_total: 0 }
-//     // @ts-ignore
-//     agg[item.institution_id].sumQuantity += + item.staff_total
-//     return agg
-//   }, {})
-// )
-
-// export const consolidatedSubmissions = Object.values(submissionsData.reduce((r, o) => {
-//   // @ts-ignore
-//         Object.assign(r[o.institution_id] ??= {}, o);
-//         return r;
-//     }, {}));
